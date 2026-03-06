@@ -8,3 +8,23 @@ User asks a question
 → system selects top matching chunks
 → system builds a prompt with context
 → LLM generates final answer
+
+## Query Pipeline
+
+User Query
+→ Chunk query if needed
+→ Convert query to embedding
+→ Search vector index
+→ Retrieve top-k chunks
+→ Build prompt
+→ Send to LLM
+→ Return answer
+
+## Ingestion Pipeline
+
+Raw Documents
+→ Load documents
+→ Clean text
+→ Chunk text
+→ Generate embeddings
+→ Store vectors + metadata in index
