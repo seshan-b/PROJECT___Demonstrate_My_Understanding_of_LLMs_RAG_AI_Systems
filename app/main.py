@@ -11,18 +11,20 @@ from core.retriever import Retriever
 from core.prompt_builder import build_prompt
 from core.llm import generate_answer
 
-# load documents from the raw/ directory
-documents = load_documents("data/raw")
+INDEX_PATH = "data/index.json"
 
-# split them into manageable chunks
-chunks = chunk_documents(documents)
-
-# create embeddings for each chunk
-embedded_chunks = generate_embeddings(chunks)
-
-# build a vector index for fast similarity search
 vector_index = VectorIndex()
-vector_index.add(embedded_chunks)
+
+if os.path.exists(INDEX_PATH):
+    # index already built — load it from disk
+    vector_index.load(INDEX_PATH)
+else:
+    # first run — build the index and save it for next time
+    documents = load_documents("data/raw")
+    chunks = chunk_documents(documents)
+    embedded_chunks = generate_embeddings(chunks)
+    vector_index.add(embedded_chunks)
+    vector_index.save(INDEX_PATH)
 
 # create a retriever that uses the index
 retriever = Retriever(vector_index)

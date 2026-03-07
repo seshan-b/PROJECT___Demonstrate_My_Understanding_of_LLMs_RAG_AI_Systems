@@ -1,4 +1,5 @@
 import math
+import json
 
 # measures how similar two vectors are by looking at the angle between them
 # returns a value between -1 (opposite) and 1 (identical direction)
@@ -43,3 +44,13 @@ class VectorIndex:
 
         # return only the top_k most similar chunks (without the score)
         return [item for score, item in results[:top_k]]
+
+    def save(self, path):
+        # write all vectors to a JSON file so we don't have to rebuild next time
+        with open(path, "w") as f:
+            json.dump(self.vectors, f)
+
+    def load(self, path):
+        # read vectors back from a previously saved JSON file
+        with open(path, "r") as f:
+            self.vectors = json.load(f)

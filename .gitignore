@@ -3,6 +3,9 @@ __pycache__/
 *.pyc
 *.pyo
 
+# Generated index
+data/index.json
+
 # Environment
 .env
 
