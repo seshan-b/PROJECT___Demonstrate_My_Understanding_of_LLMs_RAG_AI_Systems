@@ -1,6 +1,11 @@
 import random
 
 
+# embed a single query string and return just the embedding vector
+def embed_query(text):
+    return [random.random() for _ in range(10)]
+
+
 def generate_embeddings(chunks):
 
     embedded_chunks = []
