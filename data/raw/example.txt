@@ -1,0 +1,1 @@
+Artificial intelligence systems often use embeddings to represent text as dense vectors in a high-dimensional space, enabling semantic similarity search across large document collections.

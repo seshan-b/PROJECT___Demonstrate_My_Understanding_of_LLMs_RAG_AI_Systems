@@ -1,0 +1,1 @@
+Artificial intelligence systems often use embeddings to convert text into numerical vectors. These vectors allow machines to compare semantic meaning between pieces of text.
