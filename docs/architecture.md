@@ -20,6 +20,50 @@ User Query
 → Send to LLM
 → Return answer
 
+## Current Pipeline Milestone
+
+Your pipeline conceptually looks like this:
+
+```
+documents
+   ↓
+loader
+   ↓
+chunker
+   ↓
+embedder
+```
+
+Each stage transforms the data slightly.
+
+Example flow:
+
+```
+example.txt
+   ↓
+loader
+   ↓
+{
+ text: "...",
+ metadata: {source: "example.txt"}
+}
+   ↓
+chunker
+   ↓
+{
+ text: "chunk text",
+ metadata: {source: "example.txt", chunk_id: 0}
+}
+   ↓
+embedder
+   ↓
+{
+ embedding: [0.12, 0.44, ...],
+ text: "chunk text",
+ metadata: {...}
+}
+```
+
 ## Ingestion Pipeline
 
 Raw Documents
